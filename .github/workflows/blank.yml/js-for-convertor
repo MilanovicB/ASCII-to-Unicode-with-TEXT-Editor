@@ -1,0 +1,72 @@
+function getCaret(obj) {
+	var caretPos = 0,
+    sel, range;
+	sel = window.getSelection();
+    if (sel.rangeCount) {
+      range = sel.getRangeAt(0);
+      if (range.commonAncestorContainer.parentNode == obj) {
+        caretPos = range.endOffset;
+      }
+    }
+  return caretPos;
+};
+function setCaret(id, pos) {
+    var el = document.getElementById(id);
+    var range = document.createRange();
+    var sel = window.getSelection();
+    range.setStart(el.childNodes[0], pos);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+    el.focus();
+}
+$(function () {
+	$('img').click(function () {
+		var org =  $('#editText').html();
+		var txt = '&#x' + $(this).data('src') + ';';
+		var div = document.getElementById('editText');
+		var caret = getCaret(div);
+	   $('#editText').focus();
+	   var caret_end = "";
+		if (typeof window.getSelection != "undefined") {
+			var sel = window.getSelection();
+			if (sel.rangeCount) {
+				var container = document.createElement("div");
+				for (var i = 0, len = sel.rangeCount; i < len; ++i) {
+					container.appendChild(sel.getRangeAt(i).cloneContents());
+				}
+				caret_end = container.innerHTML;
+			}
+		} else if (typeof document.selection != "undefined") {
+			if (document.selection.type == "Text") {
+				caret_end = document.selection.createRange().htmlText;
+			}
+		}
+		if(caret_end.length == 0){
+			if(caret == 0){
+				$('#editText').html(txt + org);
+				setCaret('editText', (caret + 1));
+		   } else if(caret == $('#editText').text().length){
+				$('#editText').html(org + txt);
+				setCaret('editText', $('#editText').text().length);
+		   } else {
+				//insert in place
+				var p1 = $('#editText').text().substring(0, caret);
+				var p2 = $('#editText').text().substring(caret, $('#editText').text().length);
+				$('#editText').html(p1 + txt + p2);
+				setCaret('editText', (caret + 1));
+		   }
+		} else {
+			//replace highlighted text
+			var p1 = $('#editText').text().substring(0, caret);
+			var p2 = $('#editText').text().substring(caret, $('#editText').text().length);
+			p1 = p1.replace(caret_end, txt);
+			$('#editText').html(p1 + p2);
+			setCaret('editText', (caret + 1));
+		}
+	   $('#editText').blur();
+	  });
+  $('#editText').bind('change keyup input', function () {
+    //$('#html').html($(this).html());
+  });
+});
