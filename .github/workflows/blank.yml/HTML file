@@ -1,0 +1,16 @@
+<div id="editText" contenteditable="true" placeholder="type message here or add some emojis"></div>
+<div class="faces">
+#EXAMPLES GO HERE
+  <img src="http://cdn.jsdelivr.net/emojione/assets/svg/263a.svg" data-src="263a" /> 
+  <img src="http://cdn.jsdelivr.net/emojione/assets/svg/1f60a.svg" data-src="1f60a" />
+  <img src="http://cdn.jsdelivr.net/emojione/assets/svg/2639.svg" data-src="2639" />
+  <img src="http://cdn.jsdelivr.net/emojione/assets/svg/1f60b.svg" data-src="1f60b" />
+  <img src="http://cdn.jsdelivr.net/emojione/assets/svg/1f60c.svg" data-src="1f60c" />
+  <img src="http://cdn.jsdelivr.net/emojione/assets/svg/1f60d.svg" data-src="1f60d" />
+  <img src="http://cdn.jsdelivr.net/emojione/assets/svg/1f60e.svg" data-src="1f60e" />
+  <img src="http://cdn.jsdelivr.net/emojione/assets/svg/1f60f.svg" data-src="1f60f" />
+  <img src="http://cdn.jsdelivr.net/emojione/assets/svg/1f61a.svg" data-src="1f61a" />
+</div>
+<div style="clear:both"></div>
+
+#CREATED BY BORIS MILANOVIC
